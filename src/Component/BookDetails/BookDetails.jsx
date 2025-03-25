@@ -7,7 +7,9 @@ const BookDetails = () => {
     const { bookId } = useParams();
     const book = books.find(book => book.bookId === bookId);
     const { image, bookName, author, review, category, tags, totalPages, publisher, yearOfPublishing, rating } = book;
-    console.log(book);
+    const handleAddtoCart=e=>{
+        console.log('book added');
+    }
     return (
         <div className="my-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="bg-[#1313130D] p-16 rounded-3xl">
@@ -55,7 +57,7 @@ const BookDetails = () => {
                     </tbody>
                 </table>
                 <div className="worksans text-lg flex gap-4">
-                    <button className="btn btn-outline font-semibold">Read</button>       
+                    <button className="btn btn-outline font-semibold" onClick={handleAddtoCart}>Add to Cart</button>       
                 </div>
             </div>
         </div>

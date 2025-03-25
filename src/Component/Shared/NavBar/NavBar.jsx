@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { CiShoppingCart } from "react-icons/ci";
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../Providers/AuthProvider';
+import { BiLogOut } from 'react-icons/bi';
 const NavBar = () => {
+    const {user, logOut} = useContext(AuthContext);
+    const handleLogOut = ()=>{
+        logOut()
+        .then(()=>{})
+        .catch(error=>console.log(error))
+    }
     return (
         <div className="navbar bg-base-100 shadow-sm">
             <div className="flex-1">
@@ -28,7 +36,12 @@ const NavBar = () => {
                     </div>
                 </div>
                 <div className="dropdown dropdown-end">
+                   {
+                    user ?
+                    <button className="btn btn-soft btn-success" onClick={handleLogOut}>Logout</button>
+                    :
                     <Link to='/login'><button className="btn btn-soft btn-success">Login</button></Link>
+                   }
                 </div>
             </div>
         </div>

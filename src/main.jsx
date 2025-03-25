@@ -7,6 +7,9 @@ import Main from './Component/Main/Main.jsx'
 import ErrorPage from './Component/ErrorPage/ErrorPage.jsx'
 import Home from './Component/Home/Home.jsx'
 import BookDetails from './Component/BookDetails/BookDetails.jsx'
+import Login from './Component/Login/Login.jsx'
+import SignUp from './Component/SignUp/SignUp.jsx'
+import AuthProvider from './Providers/AuthProvider.jsx'
 
 const router = createBrowserRouter([
   {
@@ -21,7 +24,15 @@ const router = createBrowserRouter([
       {
         path: "/book/:bookId",
         element: <BookDetails></BookDetails>,
-        loader: ()=>fetch("../public/booksInfo.json")
+        loader: () => fetch("../public/booksInfo.json")
+      },
+      {
+        path: "/login",
+        element: <Login></Login>
+      },
+      {
+        path: "/signup",
+        element: <SignUp></SignUp>
       }
     ]
   }
@@ -29,8 +40,10 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <div className='max-w-screen-xl mx-auto'>
-      <RouterProvider router={router} />
-    </div>
+    <AuthProvider>
+      <div className='max-w-screen-xl mx-auto'>
+        <RouterProvider router={router} />
+      </div>
+    </AuthProvider>
   </StrictMode>,
 )
