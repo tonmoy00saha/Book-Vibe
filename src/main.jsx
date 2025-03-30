@@ -10,6 +10,8 @@ import BookDetails from './Component/BookDetails/BookDetails.jsx'
 import Login from './Component/Login/Login.jsx'
 import SignUp from './Component/SignUp/SignUp.jsx'
 import AuthProvider from './Providers/AuthProvider.jsx'
+import PrivateRoute from './Component/PrivateRoute/PrivateRoute.jsx'
+import Secret from './Component/Shared/Secret/Secret.jsx'
 
 const router = createBrowserRouter([
   {
@@ -24,7 +26,7 @@ const router = createBrowserRouter([
       {
         path: "/book/:bookId",
         element: <BookDetails></BookDetails>,
-        loader: () => fetch("../public/booksInfo.json")
+        loader: () => fetch("http://localhost:5000/book")
       },
       {
         path: "/login",
@@ -33,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUp></SignUp>
+      },
+      {
+        path: '/secret',
+        element: <PrivateRoute><Secret></Secret></PrivateRoute>
       }
     ]
   }

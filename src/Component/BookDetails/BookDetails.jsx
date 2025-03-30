@@ -1,14 +1,58 @@
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, useLocation, useNavigate, useParams } from "react-router-dom";
 import BookDetailstag from "../BookDetailsTag/BookDetailstag";
+import useAuth from "../Hook/useAuth";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 
 const BookDetails = () => {
     const books = useLoaderData();
     const { bookId } = useParams();
     const book = books.find(book => book.bookId === bookId);
-    const { image, bookName, author, review, category, tags, totalPages, publisher, yearOfPublishing, rating } = book;
-    const handleAddtoCart=e=>{
-        console.log('book added');
+    const {_id, image, bookName, author, review, category, tags, totalPages, publisher, yearOfPublishing, rating, price } = book;
+    const {user} = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
+    
+    const handleAddtoCart=(book)=>{
+        if(user && user.email){
+            // send cart item to the database
+            const cartItem = {
+                menuId: _id,
+                email : user.email,
+                bookName,
+                image,
+                price
+            }
+            axios.post('http://localhost:5000/Carts', cartItem)
+            .then(res=>{
+                if(res.data.insertedId)
+                {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: `${bookName} added to the Cart!`,
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
+                }
+            })
+        }
+        else{
+            Swal.fire({
+                title: "Login Required!",
+                text:  "You need to be logged in to add books to your cart.",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Login Now"
+              }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate('/login', {state: {from: location}});
+                }
+              });
+        }
     }
     return (
         <div className="my-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -57,7 +101,7 @@ const BookDetails = () => {
                     </tbody>
                 </table>
                 <div className="worksans text-lg flex gap-4">
-                    <button className="btn btn-outline font-semibold" onClick={handleAddtoCart}>Add to Cart</button>       
+                    <button className="btn btn-outline font-semibold" onClick={()=>handleAddtoCart(book)}>Add to Cart</button>       
                 </div>
             </div>
         </div>

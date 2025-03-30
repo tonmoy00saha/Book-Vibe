@@ -4,7 +4,7 @@ import '../Shared/Shared.css'
 const Home = () => {
     const [books, setbooks] = useState([]);
     useEffect(() => {
-        fetch('booksInfo.json')
+        fetch('http://localhost:5000/book')
             .then(res => res.json())
             .then(data => setbooks(data))
     }, [books])

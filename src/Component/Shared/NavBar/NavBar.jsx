@@ -10,6 +10,10 @@ const NavBar = () => {
         .then(()=>{})
         .catch(error=>console.log(error))
     }
+    if(user)
+    {
+        // console.log(user);
+    }
     return (
         <div className="navbar bg-base-100 shadow-sm">
             <div className="flex-1">

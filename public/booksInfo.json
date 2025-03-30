@@ -10,7 +10,8 @@
       "category": "Thriller",
       "tags": ["Suspense", "Psychological"],
       "publisher": "Celadon Books",
-      "yearOfPublishing": 2019
+      "yearOfPublishing": 2019,
+      "price" : 150
     },
     {
       "bookId": "2",
@@ -23,7 +24,8 @@
       "category": "Classic",
       "tags": ["Historical", "Legal"],
       "publisher": "J.B. Lippincott & Co.",
-      "yearOfPublishing": 1960
+      "yearOfPublishing": 1960,
+      "price" : 170
     },
     {
       "bookId": "3",
@@ -36,7 +38,8 @@
       "category": "Dystopian",
       "tags": ["Political", "Science Fiction"],
       "publisher": "Secker & Warburg",
-      "yearOfPublishing": 1949
+      "yearOfPublishing": 1949,
+      "price" : 180
     },
     {
       "bookId": "4",
@@ -49,7 +52,8 @@
       "category": "Classic",
       "tags": ["Tragedy", "Romance"],
       "publisher": "Charles Scribner's Sons",
-      "yearOfPublishing": 1925
+      "yearOfPublishing": 1925,
+      "price" : 150
     },
     {
       "bookId": "5",
@@ -62,7 +66,8 @@
       "category": "Memoir",
       "tags": ["Inspiration", "Biography"],
       "publisher": "Crown Publishing Group",
-      "yearOfPublishing": 2018
+      "yearOfPublishing": 2018,
+      "price" : 170 
     },
     {
       "bookId": "6",
@@ -75,7 +80,8 @@
       "category": "Fiction",
       "tags": ["Adventure", "Philosophy"],
       "publisher": "HarperCollins",
-      "yearOfPublishing": 1988
+      "yearOfPublishing": 1988,
+      "price" : 200 
     },
     {
       "bookId": "7",
@@ -88,7 +94,8 @@
       "category": "Non-fiction",
       "tags": ["History", "Anthropology"],
       "publisher": "Harper",
-      "yearOfPublishing": 2014
+      "yearOfPublishing": 2014,
+      "price" : 300
     },
     {
       "bookId": "8",
@@ -101,7 +108,8 @@
       "category": "Memoir",
       "tags": ["Inspiration", "Education"],
       "publisher": "Random House",
-      "yearOfPublishing": 2018
+      "yearOfPublishing": 2018,
+      "price" : 190 
     },
     {
       "bookId": "9",
@@ -114,7 +122,8 @@
       "category": "Classic",
       "tags": ["Coming-of-age", "Drama"],
       "publisher": "Little, Brown and Company",
-      "yearOfPublishing": 1951
+      "yearOfPublishing": 1951,
+      "price" : 210 
     },
     {
       "bookId": "10",
@@ -127,7 +136,8 @@
       "category": "Fantasy",
       "tags": ["Adventure", "Epic"],
       "publisher": "George Allen & Unwin",
-      "yearOfPublishing": 1937
+      "yearOfPublishing": 1937,
+      "price" : 230
     },
     {
       "bookId": "11",
@@ -140,7 +150,8 @@
       "category": "Post-apocalyptic",
       "tags": ["Survival", "Drama"],
       "publisher": "Alfred A. Knopf",
-      "yearOfPublishing": 2006
+      "yearOfPublishing": 2006,
+      "price" : 220
     },
     {
       "bookId": "12",
@@ -153,7 +164,8 @@
       "category": "Historical Fiction",
       "tags": ["World War II", "Drama"],
       "publisher": "Picador",
-      "yearOfPublishing": 2005
+      "yearOfPublishing": 2005,
+      "price" : 240
     }
   ]
   

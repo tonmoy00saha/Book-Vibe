@@ -1,12 +1,15 @@
 import authenticationimg from '../../assets/authentication1.png'
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
-import { Link, useLoaderData, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Providers/AuthProvider';
 import Swal from 'sweetalert2';
 const Login = () => {
     const [disabled, setDisabled] = useState(false);
     const { signIn } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+    let from = location.state?.from?.pathname || '/';
 
     const handleLogin = e => {
         e.preventDefault();
@@ -14,12 +17,9 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         const captcha = form.captcha.value;
-
-        signIn(email, password)
-            .then(result => {
-                const user = result.user;
-                if (validateCaptcha(captcha) == true) {
-                    setDisabled(false);
+        if (validateCaptcha(captcha)) {
+            signIn(email, password)
+                .then(result => {
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
@@ -27,13 +27,24 @@ const Login = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
-                }
-                else
-                {
-                    setDisabled(true);
-                }
-            })
-            .catch(error => console.log(error))
+                    navigate(from, { replace: true });
+
+                })
+                .catch(error => {
+                    console.log(error);
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "error",
+                        title: "Login failed. Check email and password.",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                })
+        }
+        else
+        {
+            setDisabled(true);
+        }
     }
     useEffect(() => {
         loadCaptchaEnginge(6)
@@ -72,7 +83,7 @@ const Login = () => {
                                 {disabled && <p className='text-red-700'>***Incorrect Captcha***</p>}
                             </div>
                             <div className="form-control mt-6">
-                                <button disabled={disabled} className="btn bg-[#D1A054B3] text-white">Login</button>
+                                <button className="btn bg-[#D1A054B3] text-white">Login</button>
                             </div>
                         </div>
                         <div className='divider'></div>
