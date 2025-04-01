@@ -3,8 +3,11 @@ import { CiShoppingCart } from "react-icons/ci";
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Providers/AuthProvider';
 import { BiLogOut } from 'react-icons/bi';
+import useCart from '../../Hook/useCart';
 const NavBar = () => {
     const {user, logOut} = useContext(AuthContext);
+    const [cart] = useCart();
+    const totalPrice = cart.reduce((total,item)=>total+item.price,0);
     const handleLogOut = ()=>{
         logOut()
         .then(()=>{})
@@ -24,17 +27,17 @@ const NavBar = () => {
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
                         <div className="indicator">
                             <CiShoppingCart className='text-3xl'></CiShoppingCart>
-                            <span className="badge badge-sm indicator-item">8</span>
+                            <span className="badge badge-sm indicator-item">{cart.length}</span>
                         </div>
                     </div>
                     <div
                         tabIndex={0}
                         className="card card-compact dropdown-content bg-base-100 z-1 mt-3 w-52 shadow">
                         <div className="card-body">
-                            <span className="text-lg font-bold">8 Items</span>
-                            <span className="text-info">Subtotal: $999</span>
+                            <span className="text-lg font-bold">{cart.length} Items</span>
+                            <span className="text-info">Subtotal: {totalPrice} BDT</span>
                             <div className="card-actions">
-                                <button className="btn btn-primary btn-block">View cart</button>
+                                <Link to="/viewcart/cart"><button className="btn btn-primary btn-block">View cart</button></Link>
                             </div>
                         </div>
                     </div>

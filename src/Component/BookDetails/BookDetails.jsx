@@ -2,7 +2,9 @@ import { useLoaderData, useLocation, useNavigate, useParams } from "react-router
 import BookDetailstag from "../BookDetailsTag/BookDetailstag";
 import useAuth from "../Hook/useAuth";
 import Swal from "sweetalert2";
-import axios from "axios";
+
+import useAxiosSecure from "../Hook/useAxiosSecure";
+import useCart from "../Hook/useCart";
 
 
 const BookDetails = () => {
@@ -13,10 +15,11 @@ const BookDetails = () => {
     const {user} = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
+    const axiosSecure = useAxiosSecure();
+    const [, refetch] = useCart();
     
-    const handleAddtoCart=(book)=>{
+    const handleAddtoCart=()=>{
         if(user && user.email){
-            // send cart item to the database
             const cartItem = {
                 menuId: _id,
                 email : user.email,
@@ -24,7 +27,7 @@ const BookDetails = () => {
                 image,
                 price
             }
-            axios.post('http://localhost:5000/Carts', cartItem)
+            axiosSecure.post('/Carts', cartItem)
             .then(res=>{
                 if(res.data.insertedId)
                 {
@@ -35,8 +38,10 @@ const BookDetails = () => {
                         showConfirmButton: false,
                         timer: 1500
                       });
+                      refetch();
                 }
-            })
+            });
+            
         }
         else{
             Swal.fire({
@@ -101,7 +106,7 @@ const BookDetails = () => {
                     </tbody>
                 </table>
                 <div className="worksans text-lg flex gap-4">
-                    <button className="btn btn-outline font-semibold" onClick={()=>handleAddtoCart(book)}>Add to Cart</button>       
+                    <button className="btn btn-outline font-semibold" onClick={handleAddtoCart}>Add to Cart</button>       
                 </div>
             </div>
         </div>
