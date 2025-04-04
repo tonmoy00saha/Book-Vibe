@@ -4,8 +4,11 @@ import { useForm } from "react-hook-form";
 import { useContext } from 'react';
 import { AuthContext } from '../../Providers/AuthProvider';
 import Swal from 'sweetalert2';
+import useAxiosPublic from '../Hook/useAxiosPublic';
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 const SignUp = () => {
+    const axiosPublic = useAxiosPublic();
     const {
         register,
         handleSubmit,
@@ -19,17 +22,26 @@ const SignUp = () => {
         createuser(data.email, data.password)
             .then(result => {
                 updateUserProfile(data.name)
-                .then(()=>{
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "error",
-                        title: "Successfully Created Your Account.",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                    reset();
-                })
-                navigate('/');
+                    .then(() => {
+                        const userInfo = {
+                            name: data.name,
+                            email: data.email
+                        }
+                        axiosPublic.post('users', userInfo)
+                            .then(res => {
+                                if (res.data.insertedId) {
+                                    reset();
+                                    Swal.fire({
+                                        position: "top-end",
+                                        icon: "Success",
+                                        title: "Successfully Created Your Account.",
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                    navigate('/');
+                                }
+                            })
+                    })
             })
     }
     return (
@@ -82,9 +94,9 @@ const SignUp = () => {
                         </div>
                     </div>
                     <div className='divider'></div>
-                    {/* <div className='text-center'>
-                <SocialLogin></SocialLogin>
-                </div> */}
+                    <div className='text-center'>
+                        <SocialLogin></SocialLogin>
+                    </div>
                     <p className="text-center text-[#D1A054]"><small>Already registered? <Link to="/login">Go to log in</Link></small></p>
 
                 </form>

@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Providers/AuthProvider';
 import Swal from 'sweetalert2';
+import SocialLogin from '../SocialLogin/SocialLogin';
 const Login = () => {
     const [disabled, setDisabled] = useState(false);
     const { signIn } = useContext(AuthContext);
@@ -87,9 +88,9 @@ const Login = () => {
                             </div>
                         </div>
                         <div className='divider'></div>
-                        {/* <div className='text-center'>
+                        <div className='text-center'>
                         <SocialLogin></SocialLogin>
-                        </div> */}
+                        </div>
                         <p className="text-center text-[#D1A054]"><small>New Here? <Link to="/signup">Create an account</Link></small></p>
                     </form>
 

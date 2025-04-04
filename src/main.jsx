@@ -18,6 +18,7 @@ import {
 } from '@tanstack/react-query'
 import ViewCart from './Component/ViewCartSection/ViewCart.jsx'
 import Cart from './Component/ViewCartSection/Pages/Cart.jsx'
+import AllUsers from './Component/ViewCartSection/Pages/AllUsers.jsx'
 
 
 const queryClient = new QueryClient()
@@ -52,12 +53,16 @@ const router = createBrowserRouter([
   },
   {
     path: '/viewcart',
-    element: <ViewCart></ViewCart>,
+    element: <PrivateRoute><ViewCart></ViewCart></PrivateRoute>,
     errorElement: <ErrorPage></ErrorPage>,
     children:[
       {
         path: 'cart',
         element: <Cart></Cart>
+      },
+      {
+        path: 'allUsers',
+        element: <AllUsers></AllUsers>
       }
     ]
 
