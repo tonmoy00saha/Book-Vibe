@@ -2,11 +2,12 @@ import { FaEnvelope, FaHome, FaList, FaShoppingCart, FaUser } from "react-icons/
 import { NavLink, Outlet } from "react-router-dom";
 import useCart from "../Hook/useCart";
 import { MdReviews } from "react-icons/md";
+import useAdmin from "../Hook/useAdmin";
 
 
 const ViewCart = () => {
     const [cart] = useCart();
-    const isAdmin = true;
+    const [isAdmin] = useAdmin();
     return (
         <div className="flex gap-12">
             <div className="w-64 min-h-screen bg-[#D1A054]">
