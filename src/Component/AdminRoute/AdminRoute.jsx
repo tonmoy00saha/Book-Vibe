@@ -3,9 +3,9 @@ import useAdmin from "../Hook/useAdmin";
 import useAuth from "../Hook/useAuth";
 
 
-const AdminRoute = (children) => {
+const AdminRoute = ({children}) => {
     const [isAdmin,isAdminLoading] = useAdmin();
-    const [user, loading] = useAuth();
+    const {user, loading} = useAuth();
     const location = useLocation();
     if(loading || isAdminLoading){
         return <div className="flex justify-center my-10">  <span className="loading loading-spinner loading-xl"></span></div>

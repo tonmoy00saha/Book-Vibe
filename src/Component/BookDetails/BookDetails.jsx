@@ -5,13 +5,13 @@ import Swal from "sweetalert2";
 
 import useAxiosSecure from "../Hook/useAxiosSecure";
 import useCart from "../Hook/useCart";
-
+import '../BookDetails/BookDetails.css'
 
 const BookDetails = () => {
     const books = useLoaderData();
-    const { bookId } = useParams();
-    const book = books.find(book => book.bookId === bookId);
-    const {_id, image, bookName, author, review, category, tags, totalPages, publisher, yearOfPublishing, rating, price } = book;
+    const { _id } = useParams();
+    const book = books.find(book => book._id === _id);
+    const { image, bookName, author, review, category, tags, totalPages, publisher, yearOfPublishing, rating, price } = book;
     const {user} = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
@@ -66,7 +66,10 @@ const BookDetails = () => {
             </div>
             <div className="space-y-4">
                 <h2 className="playfair text-4xl font-bold">{bookName}</h2>
-                <h4 className="text-xl font-medium worksans text-[#131313CC] ">By : {author}</h4>
+                <div className="flex justify-between items-center">
+                <h4 className="text-xl font-medium worksans  ">By : {author}</h4>
+                <h4 className="text-xl font-medium worksans bg-green-300 p-4">Price : {price} BDT</h4>
+                </div>
                 <hr />
                 <p className="text-xl font-medium worksans text-[#131313CC] ">{category}</p>
                 <hr />
@@ -103,6 +106,7 @@ const BookDetails = () => {
                             <td className="font-semibold text-[#131313]">{rating}</td>
 
                         </tr>
+                       
                     </tbody>
                 </table>
                 <div className="worksans text-lg flex gap-4">

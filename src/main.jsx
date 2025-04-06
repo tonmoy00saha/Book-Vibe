@@ -19,6 +19,8 @@ import {
 import ViewCart from './Component/ViewCartSection/ViewCart.jsx'
 import Cart from './Component/ViewCartSection/Pages/Cart.jsx'
 import AllUsers from './Component/ViewCartSection/Pages/AllUsers.jsx'
+import AddBooks from './Component/ViewCartSection/Pages/AddBooks.jsx'
+import AdminRoute from './Component/AdminRoute/AdminRoute.jsx'
 
 
 const queryClient = new QueryClient()
@@ -33,7 +35,7 @@ const router = createBrowserRouter([
         element: <Home></Home>
       },
       {
-        path: "/book/:bookId",
+        path: "/book/:_id",
         element: <BookDetails></BookDetails>,
         loader: () => fetch("http://localhost:5000/book")
       },
@@ -62,7 +64,11 @@ const router = createBrowserRouter([
       },
       {
         path: 'allUsers',
-        element: <AllUsers></AllUsers>
+        element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
+      },
+      {
+        path: 'addBook',
+        element: <AdminRoute><AddBooks></AddBooks></AdminRoute>
       }
     ]
 

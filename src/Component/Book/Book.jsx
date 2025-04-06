@@ -4,9 +4,9 @@ import { CiStar } from "react-icons/ci";
 import { Link } from 'react-router-dom';
 import '../Shared/Shared.css'
 const Book = ({book}) => {
-    const {image, bookName, tags, author, category, rating, bookId} = book;
+    const {image, bookName, tags, author, category, rating, _id} = book;
     return (
-        <Link to={`/book/${bookId}`}>
+        <Link to={`/book/${_id}`}>
         <div className="card bg-base-100 shadow-xl space-y-4 ">
             <figure className="px-10 pt-10 ">
                 <img
