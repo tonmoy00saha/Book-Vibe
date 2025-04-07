@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-import { FaUtensils } from "react-icons/fa";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
 import useAxiosSecure from "../../Hook/useAxiosSecure";
 import Swal from "sweetalert2";
@@ -136,7 +135,7 @@ const AddBooks = () => {
                     </label>
                     <input {...register("image", { required: true })} type="file" className="file-input w-full max-w-xs ml-4" />
                 </div>
-                <button className="btn my-4 bg-[#D1A054] text-white">Add Book <FaUtensils></FaUtensils></button>
+                <button className="btn my-4 bg-[#D1A054] text-white">Add Book</button>
             </form>
         </div>
     );

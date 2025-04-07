@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Book from '../Book/Book';
 import '../Shared/Shared.css'
+import useBook from '../Hook/useBook';
 const Home = () => {
-    const [books, setbooks] = useState([]);
-    useEffect(() => {
-        fetch('http://localhost:5000/book')
-            .then(res => res.json())
-            .then(data => setbooks(data))
-    }, [books])
+    const [books] = useBook();
     return (
         <div className="my-12 space-y-9">
             <h2 className="text-center playfair font-semibold text-4xl">Books</h2>
