@@ -23,6 +23,8 @@ import AddBooks from './Component/ViewCartSection/Pages/AddBooks.jsx'
 import AdminRoute from './Component/AdminRoute/AdminRoute.jsx'
 import ManageBooks from './Component/ViewCartSection/Pages/ManageBooks.jsx'
 import UpdateBook from './Component/ViewCartSection/Pages/UpdateBook.jsx'
+import ConfirmOrder from './Component/ViewCartSection/Pages/ConfirmOrder.jsx'
+import AdminHome from './Component/ViewCartSection/Pages/AdminHome.jsx'
 
 
 const queryClient = new QueryClient()
@@ -80,6 +82,14 @@ const router = createBrowserRouter([
         path: 'updateBook/:id',
         element: <AdminRoute><UpdateBook></UpdateBook></AdminRoute>,
         loader: ({params})=> fetch(`http://localhost:5000/book/${params.id}`)
+      },
+      {
+        path: 'confirmorder',
+        element: <ConfirmOrder></ConfirmOrder>
+      },
+      {
+        path: 'adminHome',
+        element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
       }
     ]
 

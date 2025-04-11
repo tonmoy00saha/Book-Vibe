@@ -39,9 +39,9 @@ const Cart = () => {
                 <h3 className="uppercase text-3xl font-bold">Total Item: {cart.length}</h3>
                 <h3 className="uppercase text-3xl font-bold">Total Price: {totalPrice}</h3>
                 {cart.length ?
-                    <Link to="/viewcart/payment">
-                        <button className="btn bg-[#D1A054]">Pay</button> </Link> :
-                    <button disabled className="btn bg-[#D1A054]">Pay</button>
+                    <Link to="/viewcart/confirmorder">
+                        <button className="btn bg-[#D1A054]">Confirm Order</button> </Link> :
+                    <button className="btn bg-[#D1A054]">Confirm Order</button>
                 }
 
             </div>

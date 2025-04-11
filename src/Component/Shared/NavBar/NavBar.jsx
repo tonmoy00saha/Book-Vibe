@@ -2,25 +2,24 @@ import React, { useContext } from 'react';
 import { CiShoppingCart } from "react-icons/ci";
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Providers/AuthProvider';
-import { BiLogOut } from 'react-icons/bi';
+
 import useCart from '../../Hook/useCart';
 const NavBar = () => {
-    const {user, logOut} = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
     const [cart] = useCart();
-    const totalPrice = cart.reduce((total,item)=>total+item.price,0);
-    const handleLogOut = ()=>{
+    const totalPrice = cart.reduce((total, item) => total + item.price, 0);
+    const handleLogOut = () => {
         logOut()
-        .then(()=>{})
-        .catch(error=>console.log(error))
-    }
-    if(user)
-    {
-        // console.log(user);
+            .then(() => { })
+            .catch(error => console.log(error))
     }
     return (
-        <div className="navbar bg-base-100 shadow-sm">
-            <div className="flex-1">
-                <a className="btn btn-ghost text-xl">Book Vibe</a>
+        <div className="navbar bg-base-100 shadow-sm flex justify-between">
+            <div className="">
+                <Link to="/"><button className='btn btn-ghost text-xl'>Book Vibe</button></Link>
+            </div>
+            <div>
+                {user ? <h3 className='text-2xl font-bold text-red-500'>{user.displayName}</h3> : <h3></h3>}
             </div>
             <div className="flex-none">
                 <div className="dropdown dropdown-end">
@@ -43,12 +42,12 @@ const NavBar = () => {
                     </div>
                 </div>
                 <div className="dropdown dropdown-end">
-                   {
-                    user ?
-                    <button className="btn btn-soft btn-success" onClick={handleLogOut}>Logout</button>
-                    :
-                    <Link to='/login'><button className="btn btn-soft btn-success">Login</button></Link>
-                   }
+                    {
+                        user ?
+                            <button className="btn btn-soft btn-success" onClick={handleLogOut}>Logout</button>
+                            :
+                            <Link to='/login'><button className="btn btn-soft btn-success">Login</button></Link>
+                    }
                 </div>
             </div>
         </div>
