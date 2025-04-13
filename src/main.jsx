@@ -25,6 +25,10 @@ import ManageBooks from './Component/ViewCartSection/Pages/ManageBooks.jsx'
 import UpdateBook from './Component/ViewCartSection/Pages/UpdateBook.jsx'
 import ConfirmOrder from './Component/ViewCartSection/Pages/ConfirmOrder.jsx'
 import AdminHome from './Component/ViewCartSection/Pages/AdminHome.jsx'
+import UserHome from './Component/ViewCartSection/Pages/UserHome.jsx'
+import AddReviews from './Component/ViewCartSection/Pages/AddReviews.jsx'
+import PaymentHostory from './Component/ViewCartSection/Pages/PaymentHostory.jsx'
+import Contact from './Component/ViewCartSection/Pages/Contact.jsx'
 
 
 const queryClient = new QueryClient()
@@ -90,6 +94,22 @@ const router = createBrowserRouter([
       {
         path: 'adminHome',
         element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
+      },
+      {
+        path: 'userHome',
+        element: <UserHome></UserHome>
+      },
+      {
+        path: 'review',
+        element: <AddReviews></AddReviews>
+      },
+      {
+        path: 'paymentHistory',
+        element: <PaymentHostory></PaymentHostory>
+      },
+      {
+        path: 'contact',
+        element: <Contact></Contact>
       }
     ]
 
